@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="jquery-3.2.1.js"></script>
+  <title>Exercice 5</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <form action="index.html" method="post">
+    <label for="move"> Déplace-toi ! </label><input type="text" name="texte" id="move">
+    <div class="square" id="square"></div>
+  </form>
+  <script type="text/javascript">
+  $(function(){
+    $('#move').focus(function(){
+      var marginLeft = 0, marginTop = 0;
+      var maxiHeight = $(window).height();
+      var maxiWidth = $(window).width();
+      var divSize = $('#square').width();
+      $('#move').keydown(function(key){
+        var codeAscii = key.which;
+        if(codeAscii == 37) {
+          if(marginLeft < 0) {
+            marginLeft=maxiWidth-divSize;
+            $('#square').css('margin-left', marginLeft);
+          } else {
+            marginLeft -= 10;
+            $('#square').css('margin-left', marginLeft);
+          }
+        } else if (codeAscii == 38) {
+          if(marginTop < 0){
+            marginTop=maxiHeight-divSize;
+            $('#square').css('margin-top', marginTop);
+          } else {
+            marginTop -= 10;
+            $('#square').css('margin-top', marginTop);
+          }
+        } else if (codeAscii == 39) {
+          if(marginLeft + divSize > maxiWidth){
+            marginLeft = 0;
+            $('#square').css('margin-left', marginLeft);
+          } else {
+            marginLeft += 10;
+            $('#square').css('margin-left', marginLeft);
+          }
+        } else if (codeAscii == 40) {
+          if(marginTop + divSize > maxiHeight){
+            marginTop = 0;
+            $('#square').css('margin-top', marginTop);
+          } else {
+            marginTop += 10;
+            $('#square').css('margin-top', marginTop);
+          }
+        }
+      });
+    });
+  });
+  </script>
+</body>
+</html>
